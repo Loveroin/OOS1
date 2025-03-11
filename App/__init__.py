@@ -2,7 +2,7 @@
 
 #导入flask外部库
 from flask import Flask
-from config import Config
+from config import config
 
 def app(config_name = 'default'):
 
@@ -10,10 +10,10 @@ def app(config_name = 'default'):
     app = Flask(__name__)
 
     # 从 config.py 文件中读取配置
-    app.config.from_object(Config[config_name])
+    app.config.from_object(config[config_name])
 
     # 注册路由
-    from .routes import routes
-    app.register_blueprint(routes)
+    from .routes import main
+    app.register_blueprint(main)
 
     return app
